@@ -62,7 +62,10 @@
 		// page is the current item's index.
 		onBeforeFlip: function(page) {
 			return false;
-		}
+		},
+		
+		//RTL Support
+		rtl:false
 	};
 
 	$.BookBlock.prototype = {
@@ -147,12 +150,17 @@
 					switch (keyCode) {
 					case arrow.left:
 						self._stopSlideshow();
-						self._navigate('prev');
+						if(self.options.rtl)
+							self._navigate('next');
+						else
+						  self._navigate('prev');
 						break;
 					case arrow.right:
 						self._stopSlideshow();
-						self._navigate('next');
-						B
+						if(self.options.rtl)
+							self._navigate('prev');
+						else
+							self._navigate('next');
 						break;
 
 					}
@@ -270,7 +278,7 @@
 			this.end = false;
 			this.isAnimating = false;
 
-			var isLimit = dir === 'next' && this.current === this.itemsCount - 1 || dir === 'prev' && this.current === 0;
+			var isLimit	= dir === 'next' && this.current === this.itemsCount - 1 || dir === 'prev' && this.current === 0;
 			// callback trigger
 			this.options.onEndFlip(this.current, isLimit);
 
@@ -327,7 +335,7 @@
 			if (dir === 'prev') {
 
 				$s_middle.css({
-					transform: 'rotateY(-180deg)'
+					transform: 'rotateY('+(self.options.rtl?'':'-')+'180deg)'
 				});
 
 			}
@@ -369,12 +377,12 @@
 
 			setTimeout(function() {
 
-				var style = (dir === 'next') ? 'rotateY(-180deg)' : 'rotateY(0deg)';
+				var style = (dir === 'next') ? 'rotateY('+(self.options.rtl?'':'-')+'180deg)' : 'rotateY(0deg)';
 
 				if (self.end) {
 
 					// first && last pages lift up 15 deg when we can't go further. 
-					style = (dir === 'next') ? 'rotateY(-15deg)' : 'rotateY(-165deg)';
+					style = (dir === 'next') ? 'rotateY('+(self.options.rtl?'':'-')+'15deg)' : 'rotateY('+(self.options.rtl?'':'-')+'165deg)';
 
 				}
 
@@ -457,7 +465,7 @@
 						</div>
 					</div>
 					*/
-				$side = $('<div class="bb-page"><div class="bb-front"><div class="bb-outer"><div class="bb-content" style="left:' + (-this.elWidth / 2) + 'px;width:' + this.elWidth + 'px"><div class="bb-inner">' + (dir === 'next' ? this.$current.html() : this.$nextItem.html()) + '</div></div><div class="bb-flipoverlay"></div></div></div><div class="bb-back"><div class="bb-outer"><div class="bb-content" style="width:' + this.elWidth + 'px"><div class="bb-inner">' + (dir === 'next' ? this.$nextItem.html() : this.$current.html()) + '</div></div><div class="bb-flipoverlay"></div></div></div></div>').css('z-index', 103);
+				$side = $('<div class="bb-page"><div class="bb-front"><div class="bb-outer"><div class="bb-content" style="'+(this.options.rtl?'right':'left')+':' + (-this.elWidth / 2) + 'px;width:' + this.elWidth + 'px"><div class="bb-inner">' + (dir === 'next' ? this.$current.html() : this.$nextItem.html()) + '</div></div><div class="bb-flipoverlay"></div></div></div><div class="bb-back"><div class="bb-outer"><div class="bb-content" style="width:' + this.elWidth + 'px"><div class="bb-inner">' + (dir === 'next' ? this.$nextItem.html() : this.$current.html()) + '</div></div><div class="bb-flipoverlay"></div></div></div></div>').css('z-index', 103);
 				break;
 
 			case 'right':
@@ -475,7 +483,7 @@
 						</div>
 					</div>
 					*/
-				$side = $('<div class="bb-page"><div class="bb-front"><div class="bb-outer"><div class="bb-content" style="left:' + (-this.elWidth / 2) + 'px;width:' + this.elWidth + 'px"><div class="bb-inner">' + (dir === 'next' ? this.$nextItem.html() : this.$current.html()) + '</div></div><div class="bb-overlay"></div></div></div></div>').css('z-index', 101);
+				$side = $('<div class="bb-page"><div class="bb-front"><div class="bb-outer"><div class="bb-content" style="'+(this.options.rtl?'right':'left')+':' + (-this.elWidth / 2) + 'px;width:' + this.elWidth + 'px"><div class="bb-inner">' + (dir === 'next' ? this.$nextItem.html() : this.$current.html()) + '</div></div><div class="bb-overlay"></div></div></div></div>').css('z-index', 101);
 				break;
 
 			}

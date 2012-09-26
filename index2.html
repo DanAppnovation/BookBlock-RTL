@@ -4,14 +4,17 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-		<title>BookBlock: A Content Flip Plugin</title>
+		<title>BookBlock: A Content Flip Plugin (RTLed by rtl-this.com)</title>
 		<meta name="description" content="BookBlock: A Content Flip Plugin" />
 		<meta name="keywords" content="jquery, plugin, css3, flip, page, 3d, booklet, book, perspective" />
 		<meta name="author" content="Codrops" />
 		<link rel="shortcut icon" href="../favicon.ico"> 
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
+        <link rel="stylesheet" type="text/css" href="css/demo-rtl.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="css/style-rtl.css" />
 		<link rel="stylesheet" type="text/css" href="css/custom2.css" />
+        <link rel="stylesheet" type="text/css" href="css/custom2-rtl.css" />
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:700,300' rel='stylesheet' type='text/css' />
 		<script type="text/javascript" src="js/modernizr.custom.79639.js"></script> 
 		<noscript><link rel="stylesheet" type="text/css" href="css/noJS.css" /></noscript>
@@ -37,7 +40,7 @@
 			
 				<h1><strong>BookBlock</strong> &ndash; A Content Flip Plugin</h1>
 				<h2>Flip any content like in a booklet</h2>
-				
+				 <h3>RTLed by <a href="http://rtl-this.com">rtl-this.com</a></h3>
 				<nav class="codrops-demos">
 					<a href="index.html">Demo 1</a>
 					<a class="current-demo" href="index2.html">Demo 2</a>
@@ -141,7 +144,8 @@
 										bb =	$bookBlock.bookblock( {
 											perspective	: 900,
 											speed				: 600,
-											shadows			: false
+											shadows			: false,
+											rtl:true
 										} );
 									
 								// add navigation events
