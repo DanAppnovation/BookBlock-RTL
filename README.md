@@ -9,3 +9,8 @@ A jQuery plugin that will create a booklet-like component that let's you navigat
 [demo](http://tympanus.net/Development/BookBlock/)
 
 Licensed under the MIT License
+
+With RTL support
+[article on rtl-this.com](http://rtl-this.com/tutorial/bookblock-content-flip-plugin-now-rtl-support)
+
+[RTL demo](http://rtl-this.com/sites/default/files/demos/BookBlock/index.html)
